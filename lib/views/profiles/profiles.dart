@@ -292,7 +292,7 @@ class ProfileItem extends StatelessWidget {
               child: Text(
                 '${_getTrafficText(subscriptionInfo)} · ${_getExpireText(subscriptionInfo)} - $updateTimeText',
                 style: context.textTheme.labelMedium?.toLight,
-                maxLines: 1,
+                maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
