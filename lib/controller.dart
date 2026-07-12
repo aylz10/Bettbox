@@ -2210,7 +2210,9 @@ class AppController {
     }
 
     // Use default widgets if merged is empty
-    return mergedWidgets.isNotEmpty ? mergedWidgets : defaultDashboardWidgets;
+    return mergedWidgets.isNotEmpty
+        ? mergedWidgets
+        : (system.isAndroid ? defaultAndroidDashboardWidgets : defaultDashboardWidgets);
   }
 
   Future<T?> safeRun<T>(
