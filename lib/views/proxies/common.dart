@@ -83,7 +83,7 @@ double getItemHeight(ProxyCardType proxyCardType) {
   final baseHeight =
       16 + measure.bodyMediumHeight * 2 + measure.bodySmallHeight + 8 + 4;
   return switch (proxyCardType) {
-    ProxyCardType.expand => baseHeight - measure.bodySmallHeight + measure.labelSmallHeight * 2 + 4,
+    ProxyCardType.expand => baseHeight - measure.bodySmallHeight + measure.labelSmallHeight * 3 + 4 + 8,
     ProxyCardType.shrink => baseHeight,
     ProxyCardType.min => baseHeight - measure.bodyMediumHeight,
   };
