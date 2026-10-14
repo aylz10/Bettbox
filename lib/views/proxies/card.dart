@@ -224,7 +224,7 @@ class ProxyCard extends StatelessWidget {
     if (type == ProxyCardType.expand) {
       final labelSmallHeight = measure.labelSmallHeight;
       return SizedBox(
-        height: labelSmallHeight * 2 + 4,
+        height: labelSmallHeight * 3 + 4 + 8,
         child: Column(
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -232,7 +232,15 @@ class ProxyCard extends StatelessWidget {
           children: [
             SizedBox(
               height: labelSmallHeight,
-              child: _ProxyDesc(proxy: proxy),
+              child: _ProxyDesc1(proxy: proxy),
+              ),
+              Container(
+              constraints: BoxConstraints(
+                  maxHeight: labelSmallHeight * 2,
+              ),
+              child: _ProxyDesc(
+                  proxy: proxy,
+              ),
             ),
             SizedBox(
               height: labelSmallHeight,
@@ -359,7 +367,43 @@ class _ProxyDesc extends ConsumerWidget {
       getProxyCardStateProvider(proxy.name).select((s) => s.proxyName),
     );
     if (selectedName.isEmpty) return const SizedBox.shrink();
-    return _ProxyMetaTag(selectedName);
+    return _ProxyMetaTag1(selectedName);
+  }
+}
+
+class _ProxyDesc1 extends ConsumerWidget {
+  final Proxy proxy;
+
+  const _ProxyDesc1({required this.proxy});
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final selectedProxyName1 = ref.watch(
+      getSelectedProxyNameProvider(proxy.name),
+    );
+    if (selectedProxyName1 == null) return const SizedBox.shrink();
+    return _ProxyMetaTag(selectedProxyName1);
+  }
+}
+
+class _ProxyMetaTag1 extends StatelessWidget {
+  final String text;
+
+  const _ProxyMetaTag1(this.text);
+
+  @override
+  Widget build(BuildContext context) {
+    final colorScheme1 = context.colorScheme;
+    return EmojiText(
+      text,
+      maxLines: 2,
+      overflow: TextOverflow.ellipsis,
+      style: context.textTheme.labelSmall?.copyWith(
+        height: 1,
+        color: colorScheme1.onSurfaceVariant.opacity80,
+        fontWeight: FontWeight.w400,
+      ),
+    );
   }
 }
 
